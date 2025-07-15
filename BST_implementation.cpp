@@ -145,6 +145,7 @@ Node* deleteFromBST(Node* root, int val){
         delete root;
         return NULL;
     }
+    
 
     //1 child
 
