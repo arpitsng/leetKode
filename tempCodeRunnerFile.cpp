@@ -1,7 +1,9 @@
+  // for(int i=n/2; i>0; i--){
+    //     heapify(arr, n, i);
+    // }
 
-    // if(floyds_detect_loop(head) != NULL){
-    //     cout<<"yes: cycle is present "<<endl;
+    // cout<<"array after heapify: "<<endl;
+    // for( int i: arr){
+    //     cout<<i<<" ";
     // }
-    // else{
-    //     cout<<"cycle is absent: "<<endl;
-    // }
+    // cout<<endl;
