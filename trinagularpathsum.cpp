@@ -28,3 +28,23 @@ private:
         return dp[i][j] = grid[i][j] + min(down, downDiagonal);
     }
 };
+
+
+//****************************** Tabulation solution */
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int m = triangle.size();
+        vector<vector<int>> dp = triangle; // Copy the triangle
+        
+        // Start from second-last row and move upward
+        for(int i = m-2; i >= 0; i--) {
+            for(int j = 0; j <= i; j++) {
+                // Current cell + minimum of two choices below
+                dp[i][j] = triangle[i][j] + min(dp[i+1][j], dp[i+1][j+1]);
+            }
+        }
+        
+        return dp[0][0]; // Top of triangle has the answer
+    }
+};
