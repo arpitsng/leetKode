@@ -48,3 +48,22 @@ public:
         return dp[0][0]; // Top of triangle has the answer
     }
 };
+
+
+//****************************** Space optimized Tabulation solution */
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int m = triangle.size();
+        vector<int> dp = triangle[m-1] ; // start with the last row
+        
+        // Start from second-last row and move upward
+        for(int i = m-2; i >= 0; i--) {
+            for(int j = 0; j <= i; j++) {
+                dp[j] = triangle[i][j] + min(dp[j], dp[j+1]);
+            }
+        }
+        
+        return dp[0]; // Top of triangle has the answer
+    }
+};
