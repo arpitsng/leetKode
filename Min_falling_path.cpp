@@ -34,3 +34,29 @@ private:
     }
 };
 
+// *******************tabulation solution**********************
+
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        vector<vector<int>> dp = matrix;  // we require first row only here 
+
+        int up = INT_MAX, upleft = INT_MAX, upright = INT_MAX;
+
+        for(int i=1; i<n; i++){
+            for(int j=0; j<n; j++){
+                up = dp[i-1][j];
+                upleft = (j > 0) ? dp[i-1][j-1] : INT_MAX;
+                upright = (j < n-1) ? dp[i-1][j+1] : INT_MAX;
+
+                dp[i][j] = matrix[i][j] + min({up,upleft, upright});
+            }
+        }
+        
+        int minSum = *min_element(dp[n-1].begin(), dp[n-1].end());
+        return minSum;
+
+    }
+
+};
