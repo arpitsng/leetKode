@@ -60,3 +60,32 @@ public:
     }
 
 };
+
+// *******************space optimized solution**********************
+
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        vector<int> prev = matrix[0];  // we require first row only here 
+
+        int up = INT_MAX, upleft = INT_MAX, upright = INT_MAX;
+
+        for(int i=1; i<n; i++){
+            vector<int> curr(n); // current row
+            for(int j=0; j<n; j++){
+                up = prev[j];
+                upleft = (j > 0) ? prev[j-1] : INT_MAX;
+                upright = (j < n-1) ? prev[j+1] : INT_MAX;
+
+                curr[j] = matrix[i][j] + min({up,upleft, upright});
+            }
+            prev = curr;
+        }
+        
+        int minSum = *min_element(prev.begin(), prev.end());
+        return minSum;
+
+    }
+
+};
